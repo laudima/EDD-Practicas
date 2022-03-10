@@ -3,25 +3,23 @@ package Clases;
 import java.util.Iterator;
 
 public class Practica1 {
-
+    
 
     /**
-     * Agregamos un elemento en una poscion ordenada, la lista ya esta ordenada.
-     * @return lista con el elmento agregado
-     * @param Lista<Integer> lista a anexar elemento
-     * @param nuevo - elemento a agregar
+     * Método que agrega un elemento de manera ordenada a una lista previamente ordenada.
+     * @param lista lista a la que se agregará el elemento "nuevo"
+     * @param nuevo elemento a agregar en la lista ordenada
+     * @return lista
      */
     public static Lista<Integer> AgregaOrdenado(Lista<Integer> lista, int nuevo) {
         //Tu codigo aqui
-        //no creamos nuevos nodos ni listas por lo que el espacio es constante.
         if (lista.isEmpty()){
             lista.add(nuevo);
         }else{
+            //lista.insert(i, elemento)
             IteradorLista<Integer> i = lista.iteradorLista();
             i.start();
             int index_tracker = 0;
-            /*Se ejecuta el número de veces que un elemnto de la lista es menor
-            que el elemento - nuevo- Complejidad O(n)*/
             while(i.hasNext()){
                 int index =(int) i.next();
                 if(index <= nuevo){
@@ -41,12 +39,21 @@ public class Practica1 {
         return lista;
     }
 
-    // Aqui va tu comentario
+    /**
+     * Método para hacer la unión de dos listas, eliminando los repetidos en ellas. El tiempo
+     * de ejecución de este método está dado por O(n*m) pues recorre la lista2 de m elementos
+     * n veces.
+     * Este método podría mejorarse utilizando la estructura de datos set, pues esta no permitiría la entrada
+     * de elementos repetidos y su complejidad se vería mejorada a O(m+n) pues en el peor de los casos no existen
+     * repetidos en las dos listas y se recorrería tanto m como n para insertarlos dentro del stack.
+     * @param lista1 lista que se unirá con lista2
+     * @param lista2 lista que se unirá con lista1
+     */
     public static void Union(Lista<Integer> lista1,Lista<Integer> lista2) {
         IteradorLista<Integer> i = lista1.iteradorLista();
         IteradorLista<Integer> j = lista2.iteradorLista();
-        i.start(); //Arrrrrancaaaan
-        while (i.hasNext()){ //n repeticiones
+        i.start(); //Arrrrrancaaaan 
+        while (i.hasNext()){ //n repeticiones 
             Boolean repetido = false;
             int index = (int) i.next();
             j.start();
@@ -54,22 +61,32 @@ public class Practica1 {
                 int jindex = (int) j.next(); //jeje jindex
                 if (index == jindex){
                     repetido = true;
-                    break;
+                    break; 
                 }
             }
             if (!repetido){
                 lista2.add(index);
             }
         }
-        return;
+        return; 
     }
 
-    // Aqui va tu comentario
+    /**
+     * Método para determinar la intersección entre dos listas y guardarla dentro de la primera lista.
+     * Este método es practicamente igual que el método Unión, difiriendo unicamente en que se mantienen
+     * los elementos repetidos y se borran los elementos únicos dentro de lista, dejando de lado también 
+     * los elementos únicos de lista2. 
+     * Al igual que Unión, este método podría mejorar su complejidad utilizando la estructura de datos set,
+     * pues con ella podríamos determinar cuáles son los elementos únicos de nuestras dos listas, hacer unión
+     * de estas y eliminar todo elemento que se encuentre en el set.
+     * @param lista
+     * @param lista2
+     */
     public static void Interseccion(Lista<Integer> lista,Lista<Integer> lista2) {
         IteradorLista<Integer> i = lista.iteradorLista();
         IteradorLista<Integer> j = lista2.iteradorLista();
-        i.start(); //Arrrrrancaaaan
-        while (i.hasNext()){ //n repeticiones
+        i.start(); //Arrrrrancaaaan 
+        while (i.hasNext()){ //n repeticiones 
             Boolean repetido = false;
             int index = (int) i.next();
             j.start();
@@ -77,14 +94,14 @@ public class Practica1 {
                 int jindex = (int) j.next(); //jeje jindex
                 if (index == jindex){
                     repetido = true;
-                    break;
+                    break; 
                 }
             }
             if (!repetido){
                 lista.delete(index);
             }
         }
-        return;
+        return; 
     }
 
 
@@ -93,13 +110,13 @@ public class Practica1 {
         Lista<Integer> primera = new Lista<Integer>();
         Lista<Integer> segunda = new Lista<Integer>();
         Lista<Integer> tercera = new Lista<Integer>();
-
-
+        
+        
         // Tests toString
         for (int i = 0; i <= 5; i++) {
             primera.add(i);
         }
-
+        
         String test = "0 -> 1 -> 2 -> 3 -> 4 -> 5";
         if (!primera.toString().equals(test)) {
             System.out.println("1 El toString no funciona!");
@@ -108,7 +125,7 @@ public class Practica1 {
         if (!primera.toString().equals("")) {
             System.out.println("2 El toString no funciona!");
         }
-
+            
         // Tests Reverse
         primera = new Lista<Integer>();
         segunda = new Lista<Integer>();
@@ -117,10 +134,10 @@ public class Practica1 {
             primera.add(i);
             segunda.agregaInicio(i);
         }
-
+      
         primera.reverse();
         if (!primera.toString().equals(segunda.toString())) {
-            System.out.println("1 El reverse no funciona!");
+            System.out.println("1 El reverse no funciona!");    
         }
         primera = new Lista<Integer>();
         segunda = new Lista<Integer>();
@@ -141,7 +158,7 @@ public class Practica1 {
         }
         primera.append(primera.clone());
 
-
+        
         if (!primera.toString().equals(segunda.toString())) {
             System.out.println("1 El Append no funciona!");
         }
@@ -162,7 +179,7 @@ public class Practica1 {
         segunda = new Lista<Integer>();
         for (int i = 0; i <= 10; i++) {
             primera.add(i);
-
+            
         }
         for (int i = 0; i <= 4; i++) {
             segunda.add(i);
@@ -185,7 +202,7 @@ public class Practica1 {
         for (int i = 0; i <= 10; i++) {
             if (i % 2 == 0) {
                 primera.add(i);
-            }
+            }   
         }
         primera.add(11);
         for (int i = 0; i <= 10; i++) {
@@ -195,7 +212,7 @@ public class Practica1 {
 
         }
         for (int i = 0; i <= 11; i++) {
-
+            
                 tercera.add(i);
 
         }
@@ -218,13 +235,13 @@ public class Practica1 {
         }
         segunda.add(9);
         segunda.add(10);
-
-
+        
+        
         tercera = AgregaOrdenado(primera,9);
         if (!tercera.toString().equals(segunda.toString())) {
             System.out.println("1 el agregaOrdenado no funciona!");
         }
-
+        
         // Tests Union
         primera = new Lista<Integer>();
         segunda = new Lista<Integer>();
@@ -238,7 +255,7 @@ public class Practica1 {
         if (!(primera.contains(1) && primera.contains(2) && primera.contains(3) && primera.size() == 3)) {
             System.out.println("1 La union no funciona!");
         }
-
+        
         // Tests interseccion
         primera = new Lista<Integer>();
         segunda = new Lista<Integer>();
@@ -252,15 +269,15 @@ public class Practica1 {
         if (!(primera.contains(2) && primera.size() == 1)) {
             System.out.println("1 La intersección no funciona!");
         }
+        
+        
 
 
 
+    }   
+   
 
-
-    }
-
-
-
+    
 
 
 }
