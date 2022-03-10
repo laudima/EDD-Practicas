@@ -1,9 +1,16 @@
 # Nombres
  -> Laura Itzel Rodríguez Dimayuga
+
  -> Anshar Dominguez Baron
+
 ### Número de cuenta
  -> 422013628
+
  -> 420138170
+
+### Instrucciones
+
+
 compilar -> javac -d . src/*.java
 Ejecutar -> java Clases.Practica1
 
