@@ -1,4 +1,4 @@
 # EDD-Practicas
-#Equipo 
-Laura Rodríguez 
-Anshar Dominguez 
+# Equipo 
+Laura Rodríguez
+Anshar Dominguez

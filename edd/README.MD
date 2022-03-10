@@ -1,5 +1,5 @@
-Nombres ->
-        ->
+Nombres -> Laura Itzel Rodríguez Dimayuga
+        -> Anshar Dominguez Baron
 
 compilar -> javac -d . src/*.java
 Ejecutar -> java Clases.Practica1

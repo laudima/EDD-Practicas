@@ -21,7 +21,7 @@ public class Lista<T> implements Collection<T> {
     // Iterador
     private class Iterador implements IteradorLista<T> {
         public Nodo anterior;
-        public Nodo siguiente; 
+        public Nodo siguiente;
 
         public Iterador(){
             siguiente = cabeza;
@@ -35,18 +35,18 @@ public class Lista<T> implements Collection<T> {
             if(!hasNext())
                 throw new NoSuchElementException();
             T regresar = siguiente.elemento;
-            
+
             this.anterior = this.siguiente ;
             this.siguiente=siguiente.siguiente;
             return regresar;
 
         }
-        
+
         @Override
         public boolean hasPrevious() {
             return anterior != null;
         }
-        
+
         @Override
         public T previous() {
             if (!hasPrevious())
@@ -64,22 +64,22 @@ public class Lista<T> implements Collection<T> {
             this.anterior = null;
             this.siguiente = cabeza;
         }
-        
+
         @Override
         public void end() {
             this.anterior = ultimo;
             this.siguiente = null;
         }
-        
+
     }
 
     private Nodo cabeza;
     private Nodo ultimo;
     private int longi;
-    
+
     /**
      * Agrega un elemento a la lista.
-     * 
+     *
      * @param elemento el elemento a agregar.
      * @throws IllegalArgumentException si <code>elemento</code> es
      *                                  <code>null</code>.
@@ -91,8 +91,8 @@ public class Lista<T> implements Collection<T> {
         }
         agregaFinal(elemento);
     }
-    
-    
+
+
     /**
      * Agrega un elemento al inicio de la lista. Si la lista no tiene elementos,
      * el elemento a agregar será el primero y último.
@@ -137,7 +137,11 @@ public class Lista<T> implements Collection<T> {
         }
         longi++;
     }
-
+    /**
+     * Busca el primer nodo con el elemento dado
+     * @param elemento el elemento a buscar.
+     * @return Nodo - primer nodo con el elemento
+     */
     private Nodo buscaElemento(T elemento){
         Nodo n = cabeza;
         while(n !=null){
@@ -151,9 +155,9 @@ public class Lista<T> implements Collection<T> {
 
     /**
      * Elimina un elemento de la lista.
-     * 
+     *
      * @param elemento el elemento a eliminar.
-     */ 
+     */
     public boolean delete(T elemento){
         if(elemento == null)
             return false;
@@ -181,14 +185,14 @@ public class Lista<T> implements Collection<T> {
         n.anterior.siguiente = n.siguiente;
         longi --;
         return true;
-    }    
+    }
 
 
 
     /**
      * Regresa un elemento de la lista. (Ultimo)
      * y lo elimina.
-     * 
+     *
      * @return El elemento a sacar.
      */
     public T pop(){
@@ -201,7 +205,7 @@ public class Lista<T> implements Collection<T> {
 
     /**
      * Regresa el número de elementos en la lista.
-     * 
+     *
      * @return el número de elementos en la lista.
      */
     public int size(){
@@ -210,7 +214,7 @@ public class Lista<T> implements Collection<T> {
 
     /**
      * Nos dice si un elemento está contenido en la lista.
-     * 
+     *
      * @param elemento el elemento que queremos verificar si está contenido en
      *                 la lista.
      * @return <code>true</code> si el elemento está contenido en la lista,
@@ -225,7 +229,7 @@ public class Lista<T> implements Collection<T> {
 
     /**
      * Vacía la lista.
-     * 
+     *
      */
     public void empty(){
         cabeza =ultimo= null;
@@ -234,7 +238,7 @@ public class Lista<T> implements Collection<T> {
 
     /**
      * Nos dice si la lista es vacía.
-     * 
+     *
      * @return <code>true</code> si la lista es vacía, <code>false</code> en
      *         otro caso.
      */
@@ -242,11 +246,11 @@ public class Lista<T> implements Collection<T> {
         return longi == 0;
     }
 
-    
+
 
     /**
      * Regresa una copia de la lista.
-     * 
+     *
      * @return una copia de la lista.
      */
     public Lista<T> clone() {
@@ -261,7 +265,7 @@ public class Lista<T> implements Collection<T> {
 
     /**
      * Nos dice si la coleccion es igual a otra coleccion recibida.
-     * 
+     *
      * @param coleccion la coleccion con el que hay que comparar.
      * @return <tt>true</tt> si la coleccion es igual a la coleccion recibido
      *         <tt>false</tt> en otro caso.
@@ -275,7 +279,7 @@ public class Lista<T> implements Collection<T> {
     }
 
 
-    
+
     /**
      * Metodo que invierte el orden de la lista .
      *
@@ -284,10 +288,12 @@ public class Lista<T> implements Collection<T> {
         // Tu codigo aqui
         int index =0;
         int mitad = longi/2;
+        //Solo se cambia las referencias de los elementos entonces la memoria,
+        //es constante
         Nodo nodoInicio = cabeza;
         Nodo nodoFinal = ultimo;
         //Invierte el orden de los elementos en ambas direcciones, por eso solo
-        //hace el ciclo la mitad de la longitud
+        //hace el ciclo la mitad de la longitud - O(n/2) = O(n)
         while(nodoInicio != null && index<mitad){
             T elementoInicio = nodoInicio.elemento;
             nodoInicio.elemento = nodoFinal.elemento;
@@ -298,7 +304,7 @@ public class Lista<T> implements Collection<T> {
         }
     }
 
-    
+
 
     /**
      * Regresa una representación en cadena de la coleccion.
@@ -311,6 +317,7 @@ public class Lista<T> implements Collection<T> {
         if(isEmpty()) return "";
 
         StringBuilder sb = new StringBuilder();
+        //Escribe el primer elemento
         sb.append(cabeza.elemento);
 
         Nodo nodo = cabeza.siguiente;
@@ -324,11 +331,11 @@ public class Lista<T> implements Collection<T> {
 
      /**
      * Junta dos listas siempre y cuando sean del mismo tipo.
-     *
+     * @param Lista a anexar
      */
     public void append(Lista<T> lista) {
-        if (lista.isEmpty() || isEmpty()){
-            throw new NoSuchElementException("La lista es vacía");
+        if (lista.isEmpty()){
+            return;
         }
         Nodo nodo = lista.cabeza;
         while(nodo != null){
@@ -338,7 +345,7 @@ public class Lista<T> implements Collection<T> {
         longi += lista.size();
         return;
     }
-    
+
     /**
      * Regresa un entero con la posicion del elemento.
      * Solo nos importara la primera aparición del elemento
@@ -348,6 +355,7 @@ public class Lista<T> implements Collection<T> {
      * @return entero con la posicion del elemento
      * @throws IllegalArgumentException si <code>elemento</code> es
      *         <code>null</code>.
+     * @throws NoSuchElementException si <code>lista</code> es <code>vacia</code>
      */
     public int indexOf(T elemento) {
         // Tu codigo aqui
@@ -369,7 +377,7 @@ public class Lista<T> implements Collection<T> {
         return index;
 
     }
-    
+
     /**
      * Inserta un elemento en un índice explícito.
      *
@@ -421,17 +429,23 @@ public class Lista<T> implements Collection<T> {
 
      // Tu comentario
      public void mezclaAlternada(Lista<T> lista){
-
+         /*Solo cambiamos las referencias sin crear mas nodos, entonces
+         el tamaño es constante*/
         Nodo actual1 = cabeza;
         Nodo actual2 = lista.cabeza;
         Nodo next1,next2;
+
+        //recorremos n+m nodos -> O(n+m)
         while(actual1 != null && actual2 != null){
+            //guardamos las referencias al siguiente
             next1 = actual1.siguiente;
             next2 = actual2.siguiente;
 
+            //ponemos el siguiente de la lista 2 y luego lo agregammos a la lista 1
             actual2.siguiente = next1;
             actual1.siguiente = actual2;
 
+            //pasamos a los siguientes nodos
             actual1 = next1;
             actual2 = next2;
         }

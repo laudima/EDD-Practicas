@@ -4,17 +4,24 @@ import java.util.Iterator;
 
 public class Practica1 {
 
-    //hola
 
+    /**
+     * Agregamos un elemento en una poscion ordenada, la lista ya esta ordenada.
+     * @return lista con el elmento agregado
+     * @param Lista<Integer> lista a anexar elemento
+     * @param nuevo - elemento a agregar
+     */
     public static Lista<Integer> AgregaOrdenado(Lista<Integer> lista, int nuevo) {
         //Tu codigo aqui
+        //no creamos nuevos nodos ni listas por lo que el espacio es constante.
         if (lista.isEmpty()){
             lista.add(nuevo);
         }else{
-            //lista.insert(i, elemento)
             IteradorLista<Integer> i = lista.iteradorLista();
             i.start();
             int index_tracker = 0;
+            /*Se ejecuta el número de veces que un elemnto de la lista es menor
+            que el elemento - nuevo- Complejidad O(n)*/
             while(i.hasNext()){
                 int index =(int) i.next();
                 if(index <= nuevo){
