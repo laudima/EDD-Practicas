@@ -1,8 +1,8 @@
 package edd.src.Estructuras;
 
 public class Pila<T> extends PushPop<T>{
-    
-    
+
+
     // Agregar al inicio.
     public void push(T elemento){
         if(elemento == null){
@@ -22,7 +22,7 @@ public class Pila<T> extends PushPop<T>{
 
     /**
      * Regresa un clon de la estructura.
-     * 
+     *
      * @return un clon de la estructura.
      */
     public Pila<T> clone(){

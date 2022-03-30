@@ -27,9 +27,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setVisible(true);
     }
 
-    
+
     /**
-     * Metodo main para ejecutar la aplicacion. 
+     * Metodo main para ejecutar la aplicacion.
      * @param args
      */
     public static void main(String args[]) {
@@ -58,7 +58,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
          * AutomataCelular a = new juego();
          */
        //AutomataCelular a = new JuegoVida();
-       AutomataCelular a = new Mondrian();
+       //AutomataCelular a = new Mondrian();
+       //AutomataCelular a = new Mondrian2();
+       AutomataCelular a = new Mondrian3();
        //AutomataCelular a=new juego();
        vp = new VentanaPrincipal(a);
     }
@@ -93,7 +95,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        botonDetener.setFont(new java.awt.Font("Tahoma", 1, 14)); 
+        botonDetener.setFont(new java.awt.Font("Tahoma", 1, 14));
         botonDetener.setText("Reiniciar");
         botonDetener.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +141,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
         botonIniciar.setEnabled(true);
         botonDetener.setEnabled(true);
-        stop = false;	
+        stop = false;
         t = new Thread(new Evolucionador());
         t.start();
     }
@@ -152,7 +154,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         botonIniciar.setEnabled(true);
         imagen.pinta(automata.getAutomata(), automata.getColores());
         botonDetener.setEnabled(true);
-        //stop = false;	
+        //stop = false;
         //t = new Thread(new Evolucionador());
         //t.start();
 
@@ -169,12 +171,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 labelEvolucion.setText("Evolucionando: "+automata.getEvolucion());
                 imagen.pinta(automata.getAutomata2(),automata.getColores());
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (InterruptedException ex) {}
             }
         }
     }
-    
+
     private javax.swing.JButton botonDetener;
     private javax.swing.JButton botonIniciar;
     private Imagen imagen;

@@ -10,7 +10,7 @@ public class juego extends AC{
 
 
 		Pila<Integer> pila1 = new Pila<Integer>();
-	 
+
    	/*
    	*Metodo que pinta una matriz de Blanco y le da valores aleatorios a las casillas.
    	*
@@ -27,38 +27,37 @@ public class juego extends AC{
  		   	//Maux2[2][1]=1;  Elementos que use como prueba del automata
  		   	//Maux2[2][2]=1;   Trazando una linea vertical en la matriz
  		   	//Maux2[2][3]=1;     para crear un Parpadeador o ´blinker´.
-		
+
 
 		//Modifico cada valor de la matriz Maux de forma aleatoria.
 			for (int i=0;i<Maux2.length;i++) {
 				for (int j=0;j<Maux2.length;j++) {
 
 					aux1 = (int) ( Math.random() * 14 ); //Random del 0 al 12
-					
+
 					if (aux1<1) {
-						Maux2[i][j] = 2; 
+						Maux2[i][j] = 2;
 					}else if (aux1>3 && aux1<=5) {
 						Maux2[i][j] = 1; // Azul
 					}else if (aux1>5 && aux1<=7) {
-						Maux2[i][j] = 2; 
+						Maux2[i][j] = 2;
 					}else if (aux1>6 && aux1<=8) {
-						Maux2[i][j] = 2; 
+						Maux2[i][j] = 2;
 					}else {
-
 						Maux2[i][j] = 2;
 					}
 				}
 			}
     	return Maux2;
     }
-    
+
 	/*
     *Metodo para evolucionar el automata.
 	*
 	*/
 	 @Override
 	public void evoluciona(){
-		
+
 		// Se crea una matriz copia para reemplazar los Valores.
 		int[][] CopiaM = new int[Imagen.numCells][Imagen.numCells];
 		// System.out.println("entre"); SOP que ayuda a verificar cuando se efectuaba un
@@ -116,7 +115,7 @@ public class juego extends AC{
 		}
 		//System.out.println("Termine");//SOP que ayuda a saber cuando acaba una evolucion.
 	}
-	
+
 	public int[][] getAutomata2() {
 		return Maux2;
 	}
