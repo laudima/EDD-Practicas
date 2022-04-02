@@ -1,6 +1,10 @@
 ## Nombres
     -> Laura Itzel Rodríguez Dimayuga
     -> Anshar Dominguez
+
+Comentario: Hicimos 3 automatatas pero creo que el mejor es el Mondrian3,
+que es donde ocupamos más pilas para alternar los colores.
+
 compilar -> javac -d . src/Estructuras/*.java
 
 Ejecutar -> java edd.src.Estructuras.Practica2

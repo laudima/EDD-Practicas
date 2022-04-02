@@ -3,6 +3,23 @@ import java.lang.Math;
 
 public class Practica2 {
 
+    /**
+    * Método para simular los movimientos(minimos) de la torre de hanoi
+    * 1. Sacamos los movimietos minimos con la formula conocida
+    * 2. Agregamos todos los discos en la pila origen de mayor a menor
+    * 3. Imprimimos el estado inicial
+    * 4. Hacemos todos los movimientos en 2 casos
+    *       Caso 1: la cantidad de discos es par
+    *       Caso 2: la cantidad de discos es impar
+    *
+    * En ambos casos para mover el disco vemos el movimeinto modulo 3 y l
+    * llamamos a la funcion mueve.
+    *
+    * @param cantidadDiscos - cantidad total de discos
+    * @param origen - pila de origen
+    * @param auxiliar - pila auxiliar
+    * @param destino - pila de destino
+    */
     public static void torresHanoi(int cantidadDiscos,Pila<Integer> origen, Pila<Integer> auxiliar, Pila<Integer> destino){
 
         //Es el número mínimo de movimientos es 2^n - 1 que haremos
@@ -122,21 +139,119 @@ public class Practica2 {
         }
     }
 
+    /**
+    * Método para imprimir los números en binario del 0 al N
+    * Se utiliza el método binario(i) para obtener el número en binario de
+    * cada uno de los números.
+    */
     public static void binarioColas(int N){
+        for(int i=0; i<=N; i++){
+            ImprimeConcat(binario(i));
+        }
+    }
 
+    /**
+    * Método recursivo usando colas para obtener el número en binario de un número N.
+    * @param número a convertir en binario
+    * Tenemos 2 casos para N impar o par.
+    * Caso par:
+    *       Binario = Binario/2 + 0.
+    * Caso impar:
+    *       Binario = Binario/2 + 1.
+    * Casos base = 0 y 1.
+    * @param int N - número a convertir en binario.
+    * @return Cola<Int> - número en binario.
+    */
+    private static Cola<Integer> binario(int N){
+        Cola<Integer> binario = new Cola<Integer>();
+
+        if(N==0){
+            binario.push(0);
+        }else if(N==1){
+            binario.push(1);
+        }else{
+            if(N%2==0){
+                binario = binario(N/2);
+                binario.push(0);
+            }else if(N%2==1){
+                binario = binario(N/2);
+                binario.push(1);
+            }
+        }
+        return binario;
+    }
+
+    /**Método para imprmir de forma concatenada los elementos de una cola
+    * @param Cola<Integer> cola - cola a imprimir. 
+    */
+    private static void ImprimeConcat(Cola<Integer> cola){
+        String imprime_cola="";
+        while(!(cola.isEmpty())){
+            imprime_cola += cola.pop();
+        }
+        System.out.println(imprime_cola);
     }
 
     public static void main(String[] args) {
         // Escribe aqui tu codigo para probar los metodos anteriores.
         // No olvides comentar tu codigo y escribir tu nombre en el readme.
-        int discos =4;
+
+        /*Prueba de clase Pila y Cola*/
+
+        Cola<Integer> numeros_cola = new Cola<Integer>();
+        Pila<Integer> numeros_pila = new Pila<Integer>();
+        for(int i=0; i<=10; i++){
+            numeros_pila.push(i);
+            numeros_cola.push(i);
+        }
+
+        System.out.println("---------------------------------------------");
+        System.out.println("Test Push Pop");
+        System.out.println();
+        System.out.println("Push pila:"+ numeros_pila.toString());
+        System.out.println("Push cola:"+ numeros_cola.toString());
+
+        System.out.println("---------------------------------------------");
+
+        Pila<Integer> numeros_copia1 = new Pila<Integer>();
+        Cola<Integer> numeros_copia2 = new Cola<Integer>();
+
+        numeros_copia1 = numeros_pila.clone();
+        numeros_copia2 = numeros_cola.clone();
+
+        System.out.println("Clone pila:" + numeros_copia1.toString());
+        System.out.println("Clone cola:" + numeros_copia2.toString());
+
+        System.out.println("---------------------------------------------");
+
+        numeros_copia1.pop();
+        numeros_copia2.pop();
+
+        System.out.println("Clone pila:" + numeros_copia1.toString());
+        System.out.println("Clone cola:" + numeros_copia2.toString());
+        System.out.println("---------------------------------------------");
+
+
+        /*Prueba binario*/
+        int N=10;
+        System.out.println("---------------------------------------------");
+        System.out.println("Test Binario Cola con N = " + N );
+        System.out.println();
+
+        binarioColas(N);
+
+        /*Prueba Torre de hanoi*/
+        int discos =3;
+        System.out.println("---------------------------------------------");
+        System.out.println("Test Torre de Hanoi con " + discos + "discos");
+        System.out.println();
+
 
         Pila<Integer> origen = new Pila<Integer>();
         Pila<Integer> auxiliar = new Pila<Integer>();
         Pila<Integer> destino = new Pila<Integer>();
 
         torresHanoi(discos,origen,auxiliar,destino);
-
     }
 
 }

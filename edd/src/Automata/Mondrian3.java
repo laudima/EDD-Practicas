@@ -268,7 +268,7 @@ public class Mondrian3 extends AC {
         //Creamos una pila y una cola para que te diviertas joven Artista.
         Pila<Integer> azules = new Pila<Integer>();
 
-        //Pila<Integer> colores = new Pila<Integer>();
+        Cola<Integer> colores = new Cola<Integer>();
 
 
         //numero random para los colores
@@ -300,10 +300,12 @@ public class Mondrian3 extends AC {
 
 
         //---- Trapecio de arriba---------------------------------------------
+        for(int i=2; i<=7; i++){
+            azules.push(i);
+        }
         for(int i=0; i<=29; i++){
-            min =2; max=7;
+            min =2; max=4;
             int value = random.nextInt(max + min) + min;
-            azules.push(value);
             for(int j=i; j<=79-i; j++){
                 switch(j%12){
                     case 0:
@@ -338,34 +340,8 @@ public class Mondrian3 extends AC {
 
         //---Seccion de abajo-----------------------------------------------
 
-        //Se alternan los colores de la primera seccion de abajo
-        for(int k=0; k<=29; k++){
-            for(int l=50; l<=79;l++){
-                min=8; max=15;
-                int value = random.nextInt(max + min) + min;
-                for(int p=0; p<=20;p++){
-                    if(p<=4){
-                        if(k+l==79){
-                            CopiaM[k+p][l]=value;
-                        }
-                    }
-                    else if(p>=5 && p<=9){
-                        if(k+l==79){
-                            CopiaM[k+p][l]=value;
-                        }
-                    }
-                    else if(p>=10 && p<=14){
-                        if(k+l==79){
-                            CopiaM[k+p][l]=value;
-                        }
-                    }
-                    else if(p>=15 && p<=20){
-                        if(k+l==79){
-                            CopiaM[k+p][l]=value;
-                        }
-                    }
-                }
-            }
+        for(int i=8; i<=15;i++){
+            colores.push(i);
         }
 
         //triangulo primera mitad
@@ -374,14 +350,15 @@ public class Mondrian3 extends AC {
             int value = random.nextInt(max + min) + min;
             for(int l=0;l<=k; l++){
                 if(k>= 0 && k<=4){
-                    CopiaM[20+k][79-l]=value;
+                    CopiaM[20+k][79-l]=colores.pop();;
                 }else if(k>=5 && k<= 9){
-                    CopiaM[20+k][79-l]=value;
+                    CopiaM[20+k][79-l]=colores.pop();;
                 }else if(k>=10 && k<= 14){
-                    CopiaM[20+k][79-l]=value;
+                    CopiaM[20+k][79-l]=colores.pop();;
                 }else if(k>=15 && k<= 19){
-                    CopiaM[20+k][79-l]=value;
+                    CopiaM[20+k][79-l]=colores.pop();;
                 }
+                colores.push(value);
             }
         }
         //triangulo segunda mitad
@@ -390,43 +367,75 @@ public class Mondrian3 extends AC {
             int value = random.nextInt(max + min) + min;
             for(int l=0;l<=(19-k);l++){
                 if(k>= 0 && k<=4){
-                    CopiaM[40+k][79-l]=value;
+                    CopiaM[40+k][79-l]=colores.pop();
                 }else if(k>=5 && k<= 9){
-                    CopiaM[40+k][79-l]=value;
+                    CopiaM[40+k][79-l]=colores.pop();;
                 }else if(k>=10 && k<=14){
-                    CopiaM[40+k][79-l]=value;
+                    CopiaM[40+k][79-l]=colores.pop();;
                 }else if(k>=15 && k<= 19){
-                    CopiaM[40+k][79-l]=value;
+                    CopiaM[40+k][79-l]=colores.pop();;
                 }
+                colores.push(value);
             }
         }
 
+        //Se alternan los colores de la primera seccion de abajo
+        for(int k=0; k<=29; k++){
+            min=8; max=15;
+            for(int l=50; l<=79;l++){
+                for(int p=0; p<=20;p++){
+                    int value = random.nextInt(max + min) + min;
+                    if(p<=4){
+                        if(k+l==79){
+                            CopiaM[k+p][l]=colores.pop();
+                        }
+                    }
+                    else if(p>=5 && p<=9){
+                        if(k+l==79){
+                            CopiaM[k+p][l]=colores.pop();
+                        }
+                    }
+                    else if(p>=10 && p<=14){
+                        if(k+l==79){
+                            CopiaM[k+p][l]=colores.pop();
+                        }
+                    }
+                    else if(p>=15 && p<=20){
+                        if(k+l==79){
+                            CopiaM[k+p][l]=colores.pop();
+                        }
+                    }
+                    colores.push(value);
+                }
+            }
+        }
         //segunda seccion abajo
         for(int k=79; k>=50; k--){
             min=8; max=15;
-            int value = random.nextInt(max + min) + min;
             for(int l=79; l>=49;l--){
                 for(int p=0; p<=20;p++){
+                    int value = random.nextInt(max + min) + min;
                     if(p>=0 && p<=4){
                         if(k==l){
-                            CopiaM[k-p][l]=value;
+                            CopiaM[k-p][l]=colores.pop();
                         }
                     }
                     if(p>=5 && p<=9){
                         if(k==l){
-                            CopiaM[k-p][l]=value;
+                            CopiaM[k-p][l]=colores.pop();
                         }
                     }
                     if(p>=10 && p<=14){
                         if(k==l){
-                            CopiaM[k-p][l]=value;
+                            CopiaM[k-p][l]=colores.pop();
                         }
                     }
                     if(p>=15 && p<=19){
                         if(k==l){
-                            CopiaM[k-p][l]=value;
+                            CopiaM[k-p][l]=colores.pop();
                         }
                     }
+                    colores.push(value);
                 }
             }
         }
