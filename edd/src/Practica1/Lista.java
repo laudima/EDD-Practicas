@@ -1,4 +1,4 @@
-package Clases;
+package edd.src.Practica1;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -451,6 +451,19 @@ public class Lista<T> implements Collection<T> {
         }
         longi += lista.size();
         return;
+    }
+
+    public T get(int index){
+        Nodo aux = cabeza;
+        int index_actual=0;
+        if(index==0){
+            return cabeza.elemento;
+        }
+        while(index_actual!=index){
+            aux = aux.siguiente;
+            index_actual++;
+        }
+        return aux.elemento;
     }
 
     /**

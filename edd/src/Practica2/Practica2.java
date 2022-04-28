@@ -1,5 +1,8 @@
-package edd.src.Estructuras;
+package edd.src.Practica2;
 import java.lang.Math;
+
+import edd.src.Estructuras.Cola;
+import edd.src.Estructuras.Pila;
 
 public class Practica2 {
 
@@ -50,7 +53,6 @@ public class Practica2 {
         for(int i=1; i <= total_movientos; i++){
 
             int movimiento = i % 3;
-            int ultimo_disco;
 
             /*Si la cantidad de discos es impar se intercambian los pilares
             de destino y de origen*/

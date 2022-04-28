@@ -2,7 +2,7 @@ package edd.src.Estructuras;
 
 //import java.util.Comparator;
 
-public interface Collection<T> {
+public interface Collection<T> extends Iterable<T> {
 
     /**
      * Agrega un elemento a la colección.
@@ -26,7 +26,7 @@ public interface Collection<T> {
      * 
      * @return El elemento a sacar.
      */
-    public T pop();
+    //public T pop();
 
     /**
      * Regresa el número de elementos en la colección.
@@ -75,18 +75,6 @@ public interface Collection<T> {
      */
     public String toString();
     
-    /**
-     * Metodo que invierte el orden de la colección .
-     * 
-     */
-    public void reverse();
-
-    /**
-     * Regresa una copia de la colección.
-     * 
-     * @return una copia de la colección.
-     */
-    public Collection<T> clone();
 
 
 }
