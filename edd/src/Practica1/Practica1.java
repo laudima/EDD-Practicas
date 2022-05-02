@@ -1,6 +1,5 @@
-package Clases;
+package edd.src.Practica1;
 
-import java.util.Iterator;
 
 public class Practica1 {
     

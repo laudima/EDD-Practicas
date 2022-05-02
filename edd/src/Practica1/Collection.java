@@ -1,5 +1,4 @@
-package Clases;
-
+package edd.src.Practica1;
 //import java.util.Comparator;
 
 public interface Collection<T> {
